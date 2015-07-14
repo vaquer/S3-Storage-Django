@@ -16,8 +16,12 @@ import json
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-with json.load(os.path.join(BASE_DIR, 'conf.json')) as json_file:
-    conf = json_file
+
+# IMPORT SETTINGS TO AWS AND DATABASE
+conf = None
+with open(os.path.join(BASE_DIR, 'conf.json'), 'r') as json_file:
+    conf = json.load(json_file)
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -84,9 +88,9 @@ WSGI_APPLICATION = 's3Storage.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'djangos3',
-        'USER': 'djangos3',
-        'PASSWORD': 'django.2015.meetup',
+        'NAME': conf['database']['name'],
+        'USER': conf['database']['user'],
+        'PASSWORD': conf['database']['password'],
         # 'HOST': 'localhost'
     }
 }
@@ -108,8 +112,8 @@ USE_TZ = True
 
 #AWS CONFIGURATIONS
 AWS_STORAGE_BUCKET_NAME = 'static-django-meet'
-AWS_ACCESS_KEY_ID = conf['AWS']['acces_key']
-AWS_SECRET_ACCESS_KEY = conf['AWS']['secret_key']
+AWS_ACCESS_KEY_ID = conf['aws']['acces_key']
+AWS_SECRET_ACCESS_KEY = conf['aws']['secret_key']
 AWS_S3_CUSTOM_DOMAIN = '{0}.s3.amazonaws.com'.format(AWS_STORAGE_BUCKET_NAME)
 
 
