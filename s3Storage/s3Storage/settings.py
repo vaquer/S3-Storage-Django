@@ -12,8 +12,12 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import json
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+with json.load(os.path.join(BASE_DIR, 'conf.json')) as json_file:
+    conf = json_file
 
 
 # Quick-start development settings - unsuitable for production
@@ -104,8 +108,8 @@ USE_TZ = True
 
 #AWS CONFIGURATIONS
 AWS_STORAGE_BUCKET_NAME = 'static-django-meet'
-AWS_ACCESS_KEY_ID = 'AKIAJBUJY7W4K5MP6AJQ'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = conf['AWS']['acces_key']
+AWS_SECRET_ACCESS_KEY = conf['AWS']['secret_key']
 AWS_S3_CUSTOM_DOMAIN = '{0}.s3.amazonaws.com'.format(AWS_STORAGE_BUCKET_NAME)
 
 
