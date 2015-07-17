@@ -3,8 +3,8 @@ from storages.backends.s3boto import S3BotoStorage
 
 
 class CustomMediaStorage(S3BotoStorage):
-	bucket_name = settings.MEDIA_AWS_STORAGE_BUCKET_NAME
+	bucket_name = settings.AWS_STORAGE_BUCKET_NAME_MEDIA
 
 
 class CustomStaticStorage(S3BotoStorage):
-	bucket_name = settings.STATIC_AWS_STORAGE_BUCKET_NAME
+	bucket_name = settings.AWS_STORAGE_BUCKET_NAME

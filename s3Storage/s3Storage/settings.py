@@ -110,38 +110,37 @@ USE_L10N = True
 USE_TZ = True
 
 
-#AWS CONFIGURATIONS
+# AWS CONFIGURATIONS
 AWS_STORAGE_BUCKET_NAME = 'static-django-meet'
+AWS_STORAGE_BUCKET_NAME_MEDIA = 'media-django-meet'
 AWS_ACCESS_KEY_ID = conf['aws']['acces_key']
 AWS_SECRET_ACCESS_KEY = conf['aws']['secret_key']
 AWS_S3_CUSTOM_DOMAIN = '{0}.s3.amazonaws.com'.format(AWS_STORAGE_BUCKET_NAME)
+AWS_S3_CUSTOM_DOMAIN_MEDIA = '{0}.s3.amazonaws.com'.format(AWS_STORAGE_BUCKET_NAME_MEDIA)
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
-
-# STATIC_URL = '/static/'
-STATIC_AWS_STORAGE_BUCKET_NAME = 'static-django-meet'
-STATIC_URL = 'https://{0}/static/'.format(AWS_S3_CUSTOM_DOMAIN)
+# STATIC CONFIGS
+STATIC_URL = '/static/'
+# STATIC_URL = 'https://{0}/'.format(AWS_S3_CUSTOM_DOMAIN)
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
 # SET THIS FEATURES ONLY WITH DJANGO COMPRESSOR
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder', 
     'compressor.finders.CompressorFinder',)
-STATICFILES_STORAGE = 's3Storage.custom_storages.CustomStaticStorage'
+# STATICFILES_STORAGE = 's3Storage.custom_storages.CustomStaticStorage'
 
 
-#COMPRESSOR SETTINGS
-COMPRESS_ENABLED = True
+# COMPRESSOR SETTINGS
+COMPRESS_ENABLED = False
 COMPRESS_URL = STATIC_URL
 COMPRESS_ROOT = os.path.join(BASE_DIR, 'static')
 COMPRESS_STORAGE = 's3Storage.custom_storages.CustomStaticStorage'
 
 
-#MEDIA SETTINGS
-MEDIA_AWS_STORAGE_BUCKET_NAME = 'media-django-meet'
+# MEDIA SETTINGS
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = 'https://{0}/media/'.format(AWS_S3_CUSTOM_DOMAIN)
+MEDIA_URL = '/media/'
+# MEDIA_URL = 'https://{0}/'.format(AWS_S3_CUSTOM_DOMAIN_MEDIA)
 # DEFAULT_FILE_STORAGE = 's3Storage.custom_storages.CustomMediaStorage'

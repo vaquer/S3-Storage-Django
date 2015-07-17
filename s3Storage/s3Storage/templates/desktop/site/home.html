@@ -37,7 +37,15 @@
     </nav>
     <div class="jumbotron">
       <div class="container">
-        <h1>S3 Storage in Django is pretty cool!</h1>
+        {% if static_enabled and not compress_enabled and not media_enabled %}
+          <h1>Django say's: Much better! but I'm still feeling slow.</h1>
+        {% elif static_enabled and compress_enabled and not media_enabled %}
+          <h1>Django say's: Yei! this feels fantastic, and what about media files?</h1>
+        {% elif static_enabled and compress_enabled and media_enabled %}
+          <h1>Django say's: S3 Storage in Django is pretty cool!</h1>
+        {% elif not static_enabled and not compress_enabled and not media_enabled %}
+          <h1>Django say's: The people say that i'm slow :(</h1>
+        {% endif %}
         <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
         <p><a class="btn btn-primary btn-lg" href="#" role="button">Do anything »</a></p>
       </div>
