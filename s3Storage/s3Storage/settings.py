@@ -22,14 +22,12 @@ conf = None
 with open(os.path.join(BASE_DIR, 'conf.json'), 'r') as json_file:
     conf = json.load(json_file)
 
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'bc1wxcubuj3_*=h9&ykx55mxa@xrd^rd+-mb4&8*(s#_)s81dl'
-    
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -127,7 +125,7 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 # SET THIS FEATURES ONLY WITH DJANGO COMPRESSOR
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder', 
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'compressor.finders.CompressorFinder',)
 # STATICFILES_STORAGE = 's3Storage.custom_storages.CustomStaticStorage'
 

@@ -1,4 +1,4 @@
 *.pyc
 *.json
-
+s3Storage/media/*
 
